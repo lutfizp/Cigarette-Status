@@ -1,0 +1,107 @@
+{
+	"name": "cigarette-status",
+	"displayName": "Cigarette Status",
+	"description": "Fun cigarette consumption counter",
+	"publisher": "Lutfi Zaki P",
+	"icon": "images/noun-cigarette-943158.png",
+	"repository": "e",
+	"version": "0.1.0",
+	"engines": {
+		"vscode": "^1.34.0"
+	},
+	"categories": [
+		"Snippets",
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"snippets": [
+			{
+				"language": "html",
+				"path": "./html.json"
+			},
+			{
+				"language": "css",
+				"path": "./css.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "cigarette.getCigaretteCount",
+				"title": "Get Cigarette Count"
+			},
+			{
+				"command": "cigarette.addCigaretteCount",
+				"title": "Add Cigarette to Count"
+			},
+			{
+				"command": "cigarette.cigaretteReset",
+				"title": "Reset Cigarette Counter"
+			},
+			{
+				"command": "cigarette.refresh",
+				"title": "Refresh",
+				"icon": {
+					"light": "images/refreshlight.svg",
+					"dark": "images/refreshdark.svg"
+				}
+			},
+			{
+				"command": "cigarette.cigaretteUpdate",
+				"title": "Update Cigarette Message"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "cigarette.refresh",
+					"when": "view == cigaretteView",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "cigarette.cigaretteReset",
+					"when": "viewItem == cigaretteView",
+					"title": "Reset Count",
+					"group": "inline"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "cigaretteView",
+					"title": "Cigarette Status",
+					"icon": "images/cigarettes.png"
+				}
+			]
+		},
+		"views": {
+			"cigarette-status": [
+				{
+					"id": "cigaretteView",
+					"icon" : "images/cigarettes.png",
+					"name": "Cigarette Tracker"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}
